@@ -12,20 +12,12 @@ public class OrderedShake
         Id = Guid.NewGuid();
     }
 
-    //public List<OrderedShake> ConvertShakeToOrderedShake(List<Shake> shakes)
-    //{
-    //    List<OrderedShake> orderedShakes = new List<OrderedShake>();
-    //    foreach (var shake in shakes)
-    //    {
-    //        orderedShakes.Add(new OrderedShake(shake.Name, ));
-    //    }
-    //}
 }
 
 
 public enum Size
 {
-    S = 1,
+    S ,
     M,
     L
 }

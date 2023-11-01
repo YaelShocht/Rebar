@@ -8,7 +8,7 @@ public class AccountModel
     [BsonId]
     [BsonRepresentation(BsonType.String)]
 
-    public Guid Id { get; }
+    public Guid Id { get; set; }
     public string CustomerName { get; set; }
     public List<Order> Orders { get; set; }
     public double SumOfOrders { get; set; }

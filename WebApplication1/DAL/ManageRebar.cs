@@ -5,7 +5,7 @@ namespace DAL;
 
 public class ManageRebar
 {
-    private string password = "1234";
+    private string password = "222222";
     public Menu Menu { get; set; }
     public List<AccountModel> accounts { get; set; }
 

@@ -27,7 +27,5 @@ public class AccountDataAccess : DataAccess
         var filter = Builders<AccountModel>.Filter.Eq(a => a.Id, account.Id);
         return accountsCollection.ReplaceOneAsync(filter, account, new ReplaceOptions() { IsUpsert = true });
 
-        //var update = Builders<AccountModel>.Update.Push("Account.$.Orders", order);
-        //await accountsCollection.FindOneAndUpdateAsync(filter, update);
-    }
+ }   
 }
