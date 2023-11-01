@@ -1,12 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DAL.Models;
+using MongoDB.Driver;
 
-namespace DAL.DataAccess
+namespace DAL.DataAccess;
+
+public class OrderDataAccess : DataAccess
 {
-    internal class OrderDataAccess
+    private const string OrderCollection = "order";
+
+    public Task CreateOrder(OrderModel order)
     {
+        var orderCollection = ConnectToMongo<OrderModel>(OrderCollection);
+        return orderCollection.InsertOneAsync(order);
+    }
+
+    public async Task<List<OrderModel>> GetTodaysOrders()
+    {
+        var orderCollection = ConnectToMongo<OrderModel>(OrderCollection);
+        var results = await orderCollection.FindAsync(o => o.OrderCompleted.Date == DateTime.Today);
+        return results.ToList();
     }
 }

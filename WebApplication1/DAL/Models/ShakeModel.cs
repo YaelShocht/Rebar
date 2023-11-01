@@ -1,12 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson;
 
-namespace DAL.Models
+namespace DAL.Models;
+
+public class ShakeModel
 {
-    internal class ShakeModel
+    [BsonId]
+    [BsonRepresentation(BsonType.String)]
+
+    public Guid Id { get; }
+    public string Name { get; set; }
+    public string Description { get; set; }
+    public double PriceL { get; set; }
+    public double PriceM { get; set; }
+    public double PriceS { get; set; }
+
+    public ShakeModel()
     {
+        Id = Guid.NewGuid();
     }
 }

@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MongoDB.Driver;
 
-namespace DAL.DataAccess
+namespace DAL.DataAccess;
+
+public class DataAccess
 {
-    internal class DataAccess
+    private const string ConnectionString = "mongodb://127.0.0.1:27017";
+    private const string DatabaseName = "rebar";
+
+    protected IMongoCollection<T> ConnectToMongo<T>(in string collection)
     {
+        var client = new MongoClient(ConnectionString);
+        var db = client.GetDatabase(DatabaseName);
+        return db.GetCollection<T>(collection);
     }
 }

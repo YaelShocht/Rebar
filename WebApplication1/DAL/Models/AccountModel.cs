@@ -1,12 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson;
 
-namespace DAL.Models
+namespace DAL.Models;
+
+public class AccountModel
 {
-    internal class AccountModel
+    [BsonId]
+    [BsonRepresentation(BsonType.String)]
+
+    public Guid Id { get; }
+    public string CustomerName { get; set; }
+    public List<Order> Orders { get; set; }
+    public double SumOfOrders { get; set; }
+
+    public AccountModel()
     {
+        Orders = new List<Order>();
+        Id = Guid.NewGuid();
     }
 }

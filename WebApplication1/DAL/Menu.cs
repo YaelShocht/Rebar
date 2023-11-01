@@ -1,12 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DAL.DataAccess;
+using DAL.Models;
 
-namespace DAL
+namespace DAL;
+
+public class Menu
 {
-    internal class Menu
+    public List<ShakeModel> Shakes { get; set; }
+
+    public Menu()
     {
+        InitializeShakes();
+    }
+
+    public async void InitializeShakes()
+    {
+        ShakeDataAccess shakedb = new ShakeDataAccess();
+        Shakes = await shakedb.GetAllShakes();
+    }
+
+    public List<ShakeModel> ShowMenu()
+    {
+        return Shakes;
+    }
+
+    public void AddShakeToMenu(ShakeModel shake)
+    {
+        ShakeDataAccess shakedb = new ShakeDataAccess();
+        shakedb.CreateShake(shake);
+        InitializeShakes();
     }
 }
